@@ -12,19 +12,20 @@
  * @param {number[]} nums
  * @return {number}
  */
-let nums = [1,1,2]
+let nums = [0,0,1,1,1,2,2,3,3,4]
 
 var removeDuplicates = function(nums) {
-  let j  = 0;
+  let count  = 0;
   nums.forEach((ele,idx)=>{
-    if(nums[j] === ele){
-      console.log(idx)
-    } else {
-      j++
-      console.log(j)
+    if(nums[count] !== ele){
+      count ++
+      nums[count] = ele
     }
   })
+  return ++count
 };
 
-removeDuplicates(nums)
+console.log(removeDuplicates(nums))
+
+//结题思路是这样的，设置一个count常量，该常量用来计算数组中有多少个元素是不重复的，每次遍历的时候，若nums[count] = ele，则是重复的，count不计数，只有重复才计数，相当于，不重复是一个trigger，而count便是结果，这时再另 nums[count] = ele，因为是有序数组，所以前面的元素不需要再计算，nums[count]相当于插值进入了。做一个标记，然后再进行以下的计算，知道所有的结果都能计算出来
 
